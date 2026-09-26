@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>xurl.in — Short Links That Work for Your Business</title>
+    <meta name="description"
+        content="Create short, professional links for your business. Track clicks, share easily and make every link count with xurl.in." />
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --dark: #0f172a;
+            --text: #475569;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --white: #ffffff;
+            --green: #16a34a;
+            --green-dark: #15803d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Helvetica, Arial, sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: min(1120px, 92%);
+            margin: auto;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #f1f5f9;
+            background: rgba(255, 255, 255, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-inner {
+            width: min(1120px, 92%);
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--dark);
+            color: white;
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: #1e293b;
+        }
+
+        /* HERO */
+
+        .hero {
+            padding: 90px 0 80px;
+            text-align: center;
+            background:
+                radial-gradient(circle at 50% 0%,
+                    #dbeafe 0,
+                    #ffffff 45%);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: #eff6ff;
+            color: var(--primary);
+            border: 1px solid #dbeafe;
+            padding: 7px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            background: #22c55e;
+            border-radius: 50%;
+        }
+
+        h1 {
+            max-width: 800px;
+            margin: auto;
+            font-size: clamp(42px, 7vw, 72px);
+            line-height: 1.05;
+            letter-spacing: -3px;
+            font-weight: 800;
+        }
+
+        h1 span {
+            color: var(--primary);
+        }
+
+        .hero-text {
+            max-width: 650px;
+            margin: 24px auto 34px;
+            font-size: 19px;
+            color: var(--text);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 24px;
+            border-radius: 9px;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: white;
+            box-shadow: 0 5px 18px rgba(22, 163, 74, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--green-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: white;
+            border: 1px solid var(--border);
+            color: var(--dark);
+        }
+
+        .btn-secondary:hover {
+            border-color: #94a3b8;
+        }
+
+        .hero-note {
+            margin-top: 15px;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        /* DEMO */
+
+        .demo-wrapper {
+            margin-top: 55px;
+        }
+
+        .demo {
+            max-width: 780px;
+            margin: auto;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+            text-align: left;
+        }
+
+        .demo-label {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .url-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--light);
+            border: 1px solid var(--border);
+            padding: 13px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .long-url {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #64748b;
+            font-size: 14px;
+            flex: 1;
+        }
+
+        .short-url {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        /* FEATURES */
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-light {
+            background: var(--light);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 50px;
+        }
+
+        .section-header h2 {
+            font-size: 38px;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--text);
+            font-size: 17px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        .feature-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eff6ff;
+            border-radius: 9px;
+            margin-bottom: 18px;
+            font-size: 20px;
+        }
+
+        .feature h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        /* WHO */
+
+        .audience {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .audience-item {
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            background: white;
+        }
+
+        /* CTA */
+
+        .final-cta {
+            padding: 90px 0;
+            text-align: center;
+            background: var(--dark);
+            color: white;
+        }
+
+        .final-cta h2 {
+            font-size: 42px;
+            letter-spacing: -1.5px;
+            margin-bottom: 15px;
+        }
+
+        .final-cta p {
+            color: #cbd5e1;
+            max-width: 550px;
+            margin: 0 auto 30px;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: #22c55e;
+            color: white;
+            padding: 15px 26px;
+            border-radius: 9px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .whatsapp-btn:hover {
+            background: #16a34a;
+            transform: translateY(-1px);
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 25px 0;
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            background: #020617;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .audience {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                padding: 65px 0;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .section {
+                padding: 65px 0;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .nav-cta {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+
+            .hero-text {
+                font-size: 16px;
+            }
+
+            .audience {
+                grid-template-columns: 1fr;
+            }
+
+            .final-cta h2 {
+                font-size: 32px;
+            }
+
+            .demo {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">xurl<span>.in</span></a>
+            <a href="#contact" class="nav-cta">
+                Get Started
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                Simple. Short. Smart.
+            </div>
+            <h1>
+                Turn long links into
+                <span>powerful short links.</span>
+            </h1>
+            <p class="hero-text">
+                Create clean, professional links that are easier to share,
+                remember and track. Built for businesses, marketers and creators.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/91YOURNUMBER?text=Hi%20xurl.in%2C%20I%27m%20interested%20in%20your%20URL%20shortening%20service."
+                    class="btn btn-primary" target="_blank" rel="noopener">
+                    WhatsApp Us
+                </a>
+                <a href="#features" class="btn btn-secondary">
+                    See How It Works
+                </a>
+            </div>
+            <p class="hero-note">
+                Want your own custom short link? Talk to us directly.
+            </p>
+            <!-- DEMO -->
+            <div class="demo-wrapper">
+                <div class="demo">
+                    <div class="demo-label">
+                        FROM THIS
+                    </div>
+                    <div class="url-box">
+                        <div class="long-url">
+                            https://yourwebsite.com/products/summer-sale/offer-2026
+                        </div>
+                    </div>
+                    <div class="demo-label">
+                        TO THIS
+                    </div>
+                    <div class="url-box">
+                        <div class="short-url">
+                            https://xurl.in/sale
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section section-light" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>
+                    Make every link count.
+                </h2>
+                <p>
+                    Everything you need to make your links easier to share
+                    and more useful for your business.
+                </p>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">
+                        🔗
+                    </div>
+                    <h3>
+                        Short & Professional
+                    </h3>
+                    <p>
+                        Replace long, messy URLs with clean links that
+                        look professional everywhere you share them.
+                    </p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        📊
+                    </div>
+                    <h3>
+                        Track Your Links
+                    </h3>
+                    <p>
+                        Understand how your links are performing and
+                        see where your visitors are coming from.
+                    </p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        ⚡
+                    </div>
+                    <h3>
+                        Easy to Share
+                    </h3>
+                    <p>
+                        Perfect for WhatsApp, social media, marketing
+                        campaigns, emails, websites and more.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUDIENCE -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>
+                    Built for people who share links.
+                </h2>
+                <p>
+                    Whether you're running campaigns or simply want
+                    cleaner links, xurl.in keeps things simple.
+                </p>
+            </div>
+            <div class="audience">
+                <div class="audience-item">
+                    Digital Agencies
+                </div>
+                <div class="audience-item">
+                    Small Businesses
+                </div>
+                <div class="audience-item">
+                    Creators
+                </div>
+                <div class="audience-item">
+                    Marketers
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="final-cta" id="contact">
+        <div class="container">
+            <h2>
+                Ready to simplify your links?
+            </h2>
+            <p>
+                Tell us what you need. We'll help you get started
+                with xurl.in.
+            </p>
+            <a href="https://wa.me/91YOURNUMBER?text=Hi%20xurl.in%2C%20I%27d%20like%20to%20know%20more%20about%20your%20service."
+                class="whatsapp-btn" target="_blank" rel="noopener">
+                <span>WhatsApp</span>
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        © <span id="year"></span> xurl.in · Simple links. Better sharing.
+    </footer>
+    <script>
+        // Current year
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener("click", function (event) {
+                const target = document.querySelector(
+                    this.getAttribute("href")
+                );
+                if (target) {
+                    event.preventDefault();
+                    target.scrollIntoView({
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
